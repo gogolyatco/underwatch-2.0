@@ -95,6 +95,51 @@ while run:
             now_time = timer()
             if now_time - last_time < 3:
                 reload
+for i in range(1, 6):
+    monster = Enemy(img_enemy, randint(80, win_width-80), -60, 80, 50, randint(1,5))
+    monsters.add(monster)
+    if real time == True:
+        now_time = timer()
+        if now_time last_time < 3:
+            reload = font2.render("Wait, reload...", True, (15000))
+            window.blit(reload, (260, 460))
+        else:
+            num_fire = 0
+            real_time = False
+        if life == 3:
+            life_color = (0, 150, 0)
+        if life == 2:
+            life_color= (150, 150, 0)
+        if life == 1:
+            life_color = (150, 0, 0)
+        text_life = font1.render (str(life), True, life_color)
+        window.blit(text_life, (650, 10))
+        if sprite.spritecollide (ship, monsters, False):
+            sprite.spritecollide (ship, monsters, True)
+            life -= 1
+        if life == 0 or lost >= max_lost:
+            finish True
+            window.blit(lose, (200, 200))
+        if score >= goal:
+            finish = True
+            window.blit(win, (200, 200))
+    else:
+        time.delay(3000)
+        score = 0
+        lost = 8
+        Life = 3
+        num_fire = 0
+        finish False
+        for b in bullets:
+            b.kill()
+        for min monsters:
+            m.kill()
+        for i in range(1,6):
+            monster Enemy(img_enemy, randint(50, win_width-80), -60, 80, 50, randint(1,5))
+    
+
+
+
 font.init()
 font1 = font.Font(None, 80)
 font2 = font.Font(None, 36)
@@ -119,7 +164,14 @@ from time import time as timer
     if not finish:
         bullets.update()
         monster.update()
+        text = font2.render('Рахунок:'+str(score), True, (255,255,255))
+        window.blit(text, (10, 20))
+        text_lose = font2.render("Пропущено:"+str(lost), True, (255,255,255))
+        window.blit(text_lose, (10, 50))
+        ship.reset()
 
+        bullets.draw(window)
+        monsters.draw(window)
 
     display.update()
     time.delay(50)
